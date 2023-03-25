@@ -1,4 +1,4 @@
-package info.elaina.bili.api.user
+package info.elaina.bili.api.user.infomation
 
 data class LiveRoom(
     val roomStatus: Int,
@@ -9,5 +9,5 @@ data class LiveRoom(
     val roomid: Int,
     val roundStatus: Int,
     val broadcast_type: Int,
-    val watched_show: WatchedShow
+    val watched_show: info.elaina.bili.api.user.infomation.WatchedShow
 )

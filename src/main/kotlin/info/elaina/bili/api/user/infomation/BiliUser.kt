@@ -1,4 +1,4 @@
-package info.elaina.bili.api.user
+package info.elaina.bili.api.user.infomation
 
 data class BiliUser (
     val code: Int,

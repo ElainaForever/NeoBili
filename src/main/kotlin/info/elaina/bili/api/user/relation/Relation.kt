@@ -1,4 +1,4 @@
-package info.elaina.bili.api.relation
+package info.elaina.bili.api.user.relation
 
 data class Relation(
     val code: Int,

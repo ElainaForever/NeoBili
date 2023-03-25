@@ -1,4 +1,4 @@
-package info.elaina.bili.api.user
+package info.elaina.bili.api.user.infomation
 
 data class Vip(
     val type: Int,
@@ -6,7 +6,7 @@ data class Vip(
     val due_date: Long,
     val vip_pay_type: Int,
     val theme_type: Int,
-    val label: Label,
+    val label: info.elaina.bili.api.user.infomation.Label,
     val avatar_subscript: Int,
     val nickname_color: String,
     val role: Int,

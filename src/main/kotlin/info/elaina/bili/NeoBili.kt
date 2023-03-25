@@ -8,5 +8,7 @@ fun main() {
     println(biliUser.data.name)
     val relation = NetworkUtils.getUserRelationByUID(1)
     println(relation.data.follower)
+    val follower = NetworkUtils.getUserFollowersByUID(1)
+    println(follower)
 }
 

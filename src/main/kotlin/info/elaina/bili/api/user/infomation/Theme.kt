@@ -1,4 +1,4 @@
-package info.elaina.bili.api.user
+package info.elaina.bili.api.user.infomation
 
 data class Theme(
     // 占位符 没有实际意义
