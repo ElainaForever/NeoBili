@@ -12,7 +12,7 @@ class HelpCommand: CommandBase() {
 
     override val description: String = "显示所有的指令"
 
-    override val params: Array<CommandParameter> = arrayOf()
+    override val params: ArrayList<CommandParameter> = ArrayList()
 
     init {
         registerParameter("command", ParameterType.STRING, "显示某条指令的用法", false)
@@ -30,7 +30,7 @@ class HelpCommand: CommandBase() {
         val commandParams = cmd?.params
         var paramsString = ""
         for (param in commandParams!!) {
-            paramsString += "<${param.subParameter}: ${param.type.name}> "
+            paramsString += "<${param.subParameter}: ${param.type.name}${if(param.required) " - required" else ""}> "
         }
 
         NeoBili.logger?.info("指令用法: ${cmd.command} $paramsString - ${cmd.description}")

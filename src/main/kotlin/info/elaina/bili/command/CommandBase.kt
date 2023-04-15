@@ -6,12 +6,12 @@ abstract class CommandBase {
 
     abstract val description: String
 
-    abstract val params: Array<CommandParameter>
+    abstract val params: ArrayList<CommandParameter>
     abstract fun onCall(args: Array<String>)
 
     fun registerParameter(subParameter: String, type: ParameterType, description: String, required: Boolean) {
         val param = CommandParameter(subParameter, type, description, required)
-        params.plus(param)
+        params.add(param)
     }
 
 
