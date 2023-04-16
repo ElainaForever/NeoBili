@@ -23,13 +23,11 @@ class TokenCommand: CommandBase() {
         }
         NeoBili.logger?.info("正在使用Token登录...")
         val data = NetworkUtils.getUserDataByToken(args[0])
-        NeoBili.logger?.info(data.toString())
         if (data.data.isLogin) {
             NeoBili.logger?.info("登录成功")
             NeoBili.logger?.info("用户名: ${data.data.uname}")
             NeoBili.logger?.info("UID: ${data.data.mid}")
             NeoBili.logger?.info("Token: ${args[0]}")
-            NeoBili.logger?.info("登录成功")
         } else {
             NeoBili.logger?.error("登录失败")
         }
