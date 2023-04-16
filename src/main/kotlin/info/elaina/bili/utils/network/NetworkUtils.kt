@@ -14,13 +14,13 @@ class NetworkUtils {
 
     companion object {
         fun getBiliUserByUID(uid: Int): info.elaina.bili.api.user.infomation.BiliUser {
-            val response = sendHttpRequest("https://api.bilibili.com/x/space/acc/info?mid=$uid")
+            val response = HttpUtils.get("https://api.bilibili.com/x/space/acc/info?mid=$uid")
             val gson = Gson()
             return gson.fromJson(response, info.elaina.bili.api.user.infomation.BiliUser::class.java)
         }
 
         fun getUserRelationByUID(uid: Int): Relation {
-            val response = sendHttpRequest("https://api.bilibili.com/x/relation/stat?vmid=$uid")
+            val response = HttpUtils.get("https://api.bilibili.com/x/relation/stat?vmid=$uid")
             val gson = Gson()
             return gson.fromJson(response, Relation::class.java)
         }
@@ -29,34 +29,16 @@ class NetworkUtils {
             if (page > 5) {
                 throw PageOutOfRangeException("Page number cannot be greater than 5")
             }
-            val response = sendHttpRequest("https://api.bilibili.com/x/relation/followers?vmid=$uid&ps=$show&pn=$page")
+            val response = HttpUtils.get("https://api.bilibili.com/x/relation/followers?vmid=$uid&ps=$show&pn=$page")
             val gson = Gson()
             return gson.fromJson(response, Followers::class.java)
         }
 
         fun getUserDataByToken(token: String): NavLogin {
-            val response = sendHttpRequest("https://api.bilibili.com/nav?SESSDATA=$token", token)
+            val response = HttpUtils.get("https://api.bilibili.com/nav?SESSDATA=$token", token)
             val gson = Gson()
             return gson.fromJson(response, NavLogin::class.java)
         }
-
-        private fun sendHttpRequest(url: String, cookie: String = ""): String {
-            val client = OkHttpClient()
-
-            val request: Request = Request.Builder()
-                .url(url)
-                .header(
-                    "User-Agent",
-                    "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36"
-                )
-                .addHeader("Cookie", "SESSDATA=${cookie}}")
-                .build()
-
-            val response: Response = client.newCall(request).execute()
-
-            return response.body?.string() ?: ""
-        }
-
     }
 
 }
