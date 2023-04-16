@@ -19,6 +19,7 @@ dependencies {
     implementation("com.squareup.okhttp3:logging-interceptor")
     implementation("org.apache.logging.log4j:log4j-api:2.20.0")
     implementation("org.apache.logging.log4j:log4j-core:2.20.0")
+    implementation("org.yaml:snakeyaml:2.0")
 }
 
 tasks.test {
