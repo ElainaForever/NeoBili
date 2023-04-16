@@ -3,6 +3,7 @@ package info.elaina.bili.utils.network
 import com.google.gson.Gson
 import info.elaina.bili.api.user.relation.Relation
 import info.elaina.bili.api.user.infomation.BiliUser
+import info.elaina.bili.api.user.nav.NavLogin
 import info.elaina.bili.api.user.relation.follower.Followers
 import info.elaina.bili.exception.relation.PageOutOfRangeException
 import okhttp3.OkHttpClient
@@ -33,7 +34,13 @@ class NetworkUtils {
             return gson.fromJson(response, Followers::class.java)
         }
 
-        private fun sendHttpRequest(url: String): String {
+        fun getUserDataByToken(token: String): NavLogin {
+            val response = sendHttpRequest("https://api.bilibili.com/nav?SESSDATA=$token", token)
+            val gson = Gson()
+            return gson.fromJson(response, NavLogin::class.java)
+        }
+
+        private fun sendHttpRequest(url: String, cookie: String = ""): String {
             val client = OkHttpClient()
 
             val request: Request = Request.Builder()
@@ -42,6 +49,7 @@ class NetworkUtils {
                     "User-Agent",
                     "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36"
                 )
+                .addHeader("Cookie", "SESSDATA=${cookie}}")
                 .build()
 
             val response: Response = client.newCall(request).execute()

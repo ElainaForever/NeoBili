@@ -2,7 +2,9 @@ package info.elaina.bili.command
 
 import info.elaina.bili.NeoBili
 import info.elaina.bili.command.impl.HelpCommand
+import info.elaina.bili.command.impl.LoginCommand
 import info.elaina.bili.command.impl.StopCommand
+import info.elaina.bili.command.impl.TokenCommand
 
 class CommandManager {
 
@@ -14,6 +16,8 @@ class CommandManager {
     init {
         registerCommand(HelpCommand())
         registerCommand(StopCommand())
+        registerCommand(TokenCommand())
+        registerCommand(LoginCommand())
         NeoBili.logger?.info("指令管理器初始化完成")
     }
 
